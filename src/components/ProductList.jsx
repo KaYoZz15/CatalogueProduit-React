@@ -1,54 +1,51 @@
 import ProductCard from './ProductCard'
 
-function ProductList() {
+function ProductList({
+  products,
+  selectedProductId,
+  favoriteProductId,
+  onSelectProduct,
+  onToggleFavorite,
+}) {
   return (
     <section className="product-list">
       <h2>Nos produits</h2>
 
       <div className="products-grid">
         <ProductCard
-          name="Ordinateur portable"
-          price={899}
-          category="Informatique"
-          description="Un ordinateur pratique pour travailler et étudier."
-          available={true}
-          image="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80"
+          product={products[0]}
+          isSelected={selectedProductId === products[0].id}
+          isFavorite={favoriteProductId === products[0].id}
+          onSelectProduct={onSelectProduct}
+          onToggleFavorite={onToggleFavorite}
         />
-
         <ProductCard
-          name="Souris sans fil"
-          price={29}
-          category="Accessoires"
-          description="Une souris simple et confortable à utiliser."
-          available={true}
-          image="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80"
+          product={products[1]}
+          isSelected={selectedProductId === products[1].id}
+          isFavorite={favoriteProductId === products[1].id}
+          onSelectProduct={onSelectProduct}
+          onToggleFavorite={onToggleFavorite}
         />
-
         <ProductCard
-          name="Clavier mécanique"
-          price={79}
-          category="Accessoires"
-          description="Un clavier avec des touches agréables pour écrire."
-          available={true}
-          image="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
+          product={products[2]}
+          isSelected={selectedProductId === products[2].id}
+          isFavorite={favoriteProductId === products[2].id}
+          onSelectProduct={onSelectProduct}
+          onToggleFavorite={onToggleFavorite}
         />
-
         <ProductCard
-          name="Casque audio"
-          price={59}
-          category="Audio"
-          description="Un casque pour écouter de la musique ou travailler."
-          available={true}
-          image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+          product={products[3]}
+          isSelected={selectedProductId === products[3].id}
+          isFavorite={favoriteProductId === products[3].id}
+          onSelectProduct={onSelectProduct}
+          onToggleFavorite={onToggleFavorite}
         />
-
         <ProductCard
-          name="Écran 24 pouces"
-          price={179}
-          category="Informatique"
-          description="Un écran adapté au travail quotidien sur ordinateur."
-          available={false}
-          image="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80"
+          product={products[4]}
+          isSelected={selectedProductId === products[4].id}
+          isFavorite={favoriteProductId === products[4].id}
+          onSelectProduct={onSelectProduct}
+          onToggleFavorite={onToggleFavorite}
         />
       </div>
     </section>

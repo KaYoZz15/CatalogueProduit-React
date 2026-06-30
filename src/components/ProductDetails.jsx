@@ -1,16 +1,24 @@
-function ProductDetails() {
+import ProductBadge from './ProductBadge'
+
+function ProductDetails({ product, isFavorite, onAddToCart }) {
   return (
     <section className="product-details">
-      <h2>Produit mis en avant</h2>
+      <h2>Produit sélectionné</h2>
 
       <div className="details-card">
-        <h3>Ordinateur portable</h3>
-        <p>
-          Un ordinateur performant pour le développement web, les projets
-          étudiants et le travail quotidien.
+        <ProductBadge category={product.category} />
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
+        <p className={product.available ? 'available' : 'not-available'}>
+          {product.available ? 'Disponible' : 'Indisponible'}
         </p>
-        <p>Prix : 899 €</p>
-        <p className="available">Disponible</p>
+        <strong>Prix : {product.price} €</strong>
+
+        {isFavorite && <p className="favorite-message">⭐ Ce produit est dans vos favoris.</p>}
+
+        <button onClick={() => onAddToCart(product)}>
+          Ajouter au panier
+        </button>
       </div>
     </section>
   )
