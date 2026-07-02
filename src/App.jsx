@@ -13,6 +13,8 @@ function App() {
   const [cartItems, setCartItems] = useState([])
   const [customerName, setCustomerName] = useState('')
 
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0)
+
   useEffect(() => {
     console.log('Panier mis à jour :', cartItems)
   }, [cartItems])
@@ -30,11 +32,43 @@ function App() {
       return
     }
 
-    setCartItems([...cartItems, product])
+    const productAlreadyInCart = cartItems.find((item) => item.id === product.id)
+
+    if (productAlreadyInCart) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        ),
+      )
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }])
+    }
   }
 
-  function removeFromCart(indexToRemove) {
-    setCartItems(cartItems.filter((item, index) => index !== indexToRemove))
+  function increaseQuantity(productId) {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item,
+      ),
+    )
+  }
+
+  function decreaseQuantity(productId) {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === productId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item,
+      ),
+    )
+  }
+
+  function removeFromCart(productId) {
+    setCartItems(cartItems.filter((item) => item.id !== productId))
   }
 
   function clearCart() {
@@ -59,37 +93,41 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header cartCount={cartCount} />
 
-      <main>
-        <ProductList
-          products={products}
-          selectedProductId={selectedProduct.id}
-          favoriteProductId={favoriteProductId}
-          onSelectProduct={setSelectedProduct}
-          onToggleFavorite={toggleFavorite}
-        />
-
-        <button
-          className="details-button"
-          onClick={() => setShowDetails(!showDetails)}
-        >
-          {showDetails ? 'Masquer les détails' : 'Afficher les détails'}
-        </button>
-
-        {showDetails && (
-          <ProductDetails
-            product={selectedProduct}
-            isFavorite={favoriteProductId === selectedProduct.id}
-            onAddToCart={handleAddToCart}
+      <main className="shop-layout">
+        <div className="catalog-column">
+          <ProductList
+            products={products}
+            selectedProductId={selectedProduct.id}
+            favoriteProductId={favoriteProductId}
+            onSelectProduct={setSelectedProduct}
+            onToggleFavorite={toggleFavorite}
           />
-        )}
+
+          <button
+            className="details-button"
+            onClick={() => setShowDetails(!showDetails)}
+          >
+            {showDetails ? 'Masquer les détails' : 'Afficher les détails'}
+          </button>
+
+          {showDetails && (
+            <ProductDetails
+              product={selectedProduct}
+              isFavorite={favoriteProductId === selectedProduct.id}
+              onAddToCart={handleAddToCart}
+            />
+          )}
+        </div>
 
         <Cart
           cartItems={cartItems}
           customerName={customerName}
           onCustomerNameChange={setCustomerName}
           onOrderSubmit={handleOrderSubmit}
+          onIncreaseQuantity={increaseQuantity}
+          onDecreaseQuantity={decreaseQuantity}
           onRemoveFromCart={removeFromCart}
           onClearCart={clearCart}
         />

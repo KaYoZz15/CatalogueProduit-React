@@ -35,13 +35,5 @@ export const products = [
     available: true,
     image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80',
   },
-  {
-    id: 5,
-    name: 'Écran 24 pouces',
-    price: 179,
-    category: 'Informatique',
-    description: 'Un écran adapté au travail quotidien sur ordinateur.',
-    available: false,
-    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80',
-  },
+
 ]

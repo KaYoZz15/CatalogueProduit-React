@@ -6,22 +6,27 @@ function ProductDetails({ product, isFavorite, onAddToCart }) {
       <h2>Produit sélectionné</h2>
 
       <div className="details-card">
-        <ProductBadge category={product.category} />
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <p className={product.available ? 'available' : 'not-available'}>
-          {product.available ? 'Disponible' : 'Indisponible'}
-        </p>
-        <strong>Prix : {product.price} €</strong>
+        <img src={product.image} alt={product.name} />
 
-        {isFavorite && <p className="favorite-message">⭐ Ce produit est dans vos favoris.</p>}
+        <div className="details-content">
+          <ProductBadge category={product.category} />
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
+          <p className={product.available ? 'available' : 'not-available'}>
+            {product.available ? 'Disponible' : 'Indisponible'}
+          </p>
+          <strong>Prix : {product.price} €</strong>
 
-        <button
-          onClick={() => onAddToCart(product)}
-          disabled={!product.available}
-        >
-          {product.available ? 'Ajouter au panier' : 'Produit indisponible'}
-        </button>
+          {isFavorite && <p className="favorite-message">★ Ce produit est dans vos favoris.</p>}
+
+          <button
+            className="add-button"
+            onClick={() => onAddToCart(product)}
+            disabled={!product.available}
+          >
+            {product.available ? 'Ajouter au panier' : 'Produit indisponible'}
+          </button>
+        </div>
       </div>
     </section>
   )

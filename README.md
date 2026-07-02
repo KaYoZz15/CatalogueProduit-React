@@ -11,8 +11,8 @@ npm run dev
 
 - Affichage des produits avec `map()`.
 - Choix d'un produit et ajout aux favoris.
-- Ajout et suppression de produits dans le panier.
-- Calcul du total et bouton pour vider le panier.
+- Ajout au panier seulement pour les produits disponibles.
+- Gestion des quantités avec les boutons `+` et `-`.
+- Nombre total d'articles affiché dans le panier et dans le header.
+- Calcul du total, suppression d'un produit et vidage du panier.
 - Formulaire simple pour valider une commande.
-
-Un produit indisponible ne peut pas être ajouté au panier.
