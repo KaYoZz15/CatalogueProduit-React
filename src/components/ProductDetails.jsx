@@ -16,8 +16,11 @@ function ProductDetails({ product, isFavorite, onAddToCart }) {
 
         {isFavorite && <p className="favorite-message">⭐ Ce produit est dans vos favoris.</p>}
 
-        <button onClick={() => onAddToCart(product)}>
-          Ajouter au panier
+        <button
+          onClick={() => onAddToCart(product)}
+          disabled={!product.available}
+        >
+          {product.available ? 'Ajouter au panier' : 'Produit indisponible'}
         </button>
       </div>
     </section>

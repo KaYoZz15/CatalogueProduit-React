@@ -1,4 +1,4 @@
-# Mini Boutique React - TP 5
+# Mini Boutique React - TP 6.2
 
 ## Lancer le projet
 
@@ -9,7 +9,10 @@ npm run dev
 
 ## Fonctionnalités
 
-- Choisir un produit et voir ses détails.
-- Afficher ou masquer les détails.
-- Ajouter ou retirer un produit des favoris.
-- Tester le bouton « Ajouter au panier » dans la console du navigateur.
+- Affichage des produits avec `map()`.
+- Choix d'un produit et ajout aux favoris.
+- Ajout et suppression de produits dans le panier.
+- Calcul du total et bouton pour vider le panier.
+- Formulaire simple pour valider une commande.
+
+Un produit indisponible ne peut pas être ajouté au panier.
